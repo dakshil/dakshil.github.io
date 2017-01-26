@@ -128,12 +128,12 @@
           var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            // title:data[i][0]
+            title:data[i][0]
           });
           
 
           var contentString = '<div id="content">'+
-          data[i][0]+
+          myLatlng +
           ''+
             //'<div id="siteNotice">'+
             // '</div>'+
