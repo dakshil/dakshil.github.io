@@ -133,23 +133,23 @@
           });
           
 
-          var contentString = '<div id="content">'+
+          var contentString = '<div id="content">helloooooo'+
             '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">'+data[i][0]+'</h1>'+
-            '<div id="bodyContent">'+
-            '<p>'+data[i][0]+'</h1></p>'+
-            '<p>'+data[i][0]+'</h1></p>'+
-            '</div>'+
-            '</div>';
-
+            // '</div>'+
+            // '<h1 id="firstHeading" class="firstHeading">'+data[i][0]+'</h1>'+
+            // '<div id="bodyContent">'+
+            // '<p>'+data[i][0]+'</h1></p>'+
+            // '<p>'+data[i][0]+'</h1></p>'+
+            // '</div>'+
+            // '</div>';
+            ;
           var infowindow = new google.maps.InfoWindow({
             content: contentString
           });
 
         marker.addListener('click', function() {
                   infowindow.open(map, marker);
-        };
+        });
 
         } 
       }
