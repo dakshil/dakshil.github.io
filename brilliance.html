@@ -123,6 +123,18 @@
           // Create a lat/long object readable by Google
           var myLatlng = new google.maps.LatLng(parseFloat(data[i][1]), parseFloat(data[i][2]));
           
+          
+
+          // Generate a marker from the lat/long object and add it to the map
+          var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title:data[i][0]
+          });
+          marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
           var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
@@ -136,16 +148,6 @@
           var infowindow = new google.maps.InfoWindow({
             content: contentString
           });
-
-          // Generate a marker from the lat/long object and add it to the map
-          var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title:data[i][0]
-          });
-          marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
 
 
         } 
