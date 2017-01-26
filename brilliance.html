@@ -111,46 +111,55 @@
         var request = new XMLHttpRequest();
 
         // Read the lat/long info for markers
-        request.open("GET", "https://dakshil.github.io/zip-lat-long.csv", false);
+        request.open("GET", "https://dakshil.github.io/brilliance.csv", false);
         request.send(null);
         returnValue = request.responseText;
 
         // Convert our data from the CVS file to a usable array
         var data = CSVToArray(returnValue);
 
-        for (var i = 0; i < data.length; i++) 
+        for (var i = 1; i < data.length; i++) 
         {
           // Create a lat/long object readable by Google
-          var myLatlng = new google.maps.LatLng(parseFloat(data[i][1]), parseFloat(data[i][2]));
+          var myLatlng = new google.maps.LatLng(parseFloat(data[i][6]), parseFloat(data[i][7]));
             
 
           // Generate a marker from the lat/long object and add it to the map
           var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title:data[i][0]
+            title:data[i][0]+'\nBeds: '+data[i][1]+'\nPopulation: '+data[i][2]+'\nSenior Population: '+data[i][3]+'\nPercentage of beds to senior population: '+data[i][4]+'\nOur focus: '+data[i][5]
           });
           
-          var c1=data[i][0];
-          var contentString = '<div id="content">'+
-          c1 +
-          ''+
-            //'<div id="siteNotice">'+
-            // '</div>'+
-            // '<h1 id="firstHeading" class="firstHeading">'+data[i][0]+'</h1>'+
-            // '<div id="bodyContent">'+
-            // '<p>'+data[i][0]+'</h1></p>'+
-            // '<p>'+data[i][0]+'</h1></p>'+
-            // '</div>'+
-             '</div>';
             
-          var infowindow = new google.maps.InfoWindow({
-            content: contentString
-          });
+          // var infowindow = new google.maps.InfoWindow({
+          //   content: '<div id="content">'+
+          //   '<div id="siteNotice">'+
+          //   '</div>'+
+          //   '<h1 id="firstHeading" class="firstHeading">'+
+          //   data[i][0]+
+          //   '</h1>'+
+          //   '<div id="bodyContent">'+
+          //   '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+          //   'sandstone rock formation in the southern part of the '+
+          //   'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+          //   'south west of the nearest large town, Alice Springs; 450&#160;km '+
+          //   '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+          //   'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+          //   'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+          //   'Aboriginal people of the area. It has many springs, waterholes, '+
+          //   'rock caves and ancient paintings. Uluru is listed as a World '+
+          //   'Heritage Site.</p>'+
+          //   '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+          //   'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+          //   '(last visited June 22, 2009).</p>'+
+          //   '</div>'+
+          //   '</div>'
+          // });
 
-          marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-          });
+          // marker.addListener('click', function() {
+          //           infowindow.open(map, marker);
+          // });
 
         } 
       }
