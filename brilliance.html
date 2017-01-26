@@ -7,6 +7,8 @@
       body { height: 100%; margin: 0; padding: 0 }
       #map-canvas { height: 100% }
     </style>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBeIvJweS4ZzyJRvBA7kZnryBH-SZzbFw&sensor=false">
     </script>
@@ -88,8 +90,8 @@
       }
     
         document.write("BRILLIANCE ASSISTED LIVING");
-        var lat = 39.8282;
-      var lng = -98.5795;
+        var lat = 29.0280;
+      var lng = -81.0755;
       var zm = 5;
 
       // Initialize our Google map
@@ -106,12 +108,12 @@
 
         // Generate the actual map
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
+        var markers = [];
         var returnValue = "";
         var request = new XMLHttpRequest();
 
         // Read the lat/long info for markers
-        request.open("GET", "https://dakshil.github.io/brilliance.csv", false);
+        request.open("GET", "brilliance.csv", false);
         request.send(null);
         returnValue = request.responseText;
 
@@ -130,6 +132,7 @@
             map: map,
             title:data[i][0]+'\nBeds: '+data[i][1]+'\nPopulation: '+data[i][2]+'\nSenior Population: '+data[i][3]+'\nPercentage of beds to senior population: '+data[i][4]+'\nOur focus: '+data[i][5]
           });
+          markers.push(marker);
           
             
           // var infowindow = new google.maps.InfoWindow({
@@ -162,6 +165,8 @@
           // });
 
         } 
+        var markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m'});
+
       }
     </script>
   </head>
