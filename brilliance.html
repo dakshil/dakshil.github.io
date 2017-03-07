@@ -113,7 +113,7 @@
         var request = new XMLHttpRequest();
 
         // Read the lat/long info for markers
-        request.open("brilliance.csv", false);
+        request.open("GET", "brilliance.csv", false);
         request.send(null);
         returnValue = request.responseText;
 
