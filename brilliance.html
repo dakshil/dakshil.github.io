@@ -112,11 +112,22 @@
         var returnValue = "";
         var request = new XMLHttpRequest();
 
-        // Read the lat/long info for markers
-        request.open("GET", "https://www.dropbox.com/s/kwj1qicygkel87c/brilliance.csv", false);
+        request.open("GET", "https://www.dropbox.com/s/kwj1qicygkel87c/brilliance.csv", true);
+        request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+    // JSON.parse does not evaluate the attacker's scripts.
+          returnValue = request.responseText;
+          }
+        }
         request.send(null);
-        returnValue = request.responseText;
+        
+        // Read the lat/long info for markers
+        //request.open("GET", "https://www.dropbox.com/s/kwj1qicygkel87c/brilliance.csv", false);
+        //request.send(null);
+        //returnValue = request.responseText;
 
+        
+        
         // Convert our data from the CVS file to a usable array
         var data = CSVToArray(returnValue);
 
